@@ -111,7 +111,7 @@ func upsertCounter(r *http.Request) (int32, error) {
 		CreatedAt: createdAt,
 		UpdatedAt: time.Now(),
 	}
-	err = dao.Imp.UpsertCounter(counter)
+	err = dao.Counter.UpsertCounter(counter)
 	if err != nil {
 		return 0, err
 	}
@@ -119,12 +119,12 @@ func upsertCounter(r *http.Request) (int32, error) {
 }
 
 func clearCounter() error {
-	return dao.Imp.ClearCounter(1)
+	return dao.Counter.ClearCounter(1)
 }
 
 // getCurrentCounter 查询当前计数器
 func getCurrentCounter() (*model.CounterModel, error) {
-	counter, err := dao.Imp.GetCounter(1)
+	counter, err := dao.Counter.GetCounter(1)
 	if err != nil {
 		return nil, err
 	}
